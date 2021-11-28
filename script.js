@@ -16,7 +16,7 @@ for (let i=1; i<181; i++) {
 
 /* получим main */
 let main = document.getElementsByClassName('main')[0]; /* #эл-та в массиве(даже если1 на стр.) */
-main.appendChild(tetris);
+main.appendChild(tetris); //appendChild (tetris) вставляет в класс main
 
 let excel = document.getElementsByClassName('excel');
 let i = 0;
@@ -30,6 +30,7 @@ for (let y=18; y>0; y--) {
 }
 
 let x = 5, y = 10;
+let x = 5, y = 15; //за пределами поля
 let mainArr = [
     //палка
     [
@@ -64,5 +65,15 @@ function create() {
     for (let i=0; i<figureBody.length; i++) {
         figureBody[i].classList.add('figure');
     }
+}
+
+function move() {
+    let moveFlag = true;
+    let coordinates = [
+        [figureBody[0].getAttribute('posX'), figureBody[0].getAttribute('posY')],
+        [figureBody[0].getAttribute('posX'), figureBody[2].getAttribute('posY')],
+        [figureBody[0].getAttribute('posX'), figureBody[3].getAttribute('posY')],
+        [figureBody[0].getAttribute('posX'), figureBody[4].getAttribute('posY')],
+    ]
 }
 create();
