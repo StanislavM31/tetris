@@ -29,6 +29,6 @@
     border: 1px solid rgba(233, 225, 225, 0.829);
 }
 
-.figure{
+.figure, .set {
     background-color: royalblue;
 }
