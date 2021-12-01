@@ -156,10 +156,10 @@ function move() {
         flag = true;
 
         let figureNew = [
-            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
-            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
-            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
-            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
+            document.querySelector(`[posX = "${+coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
+            document.querySelector(`[posX = "${+coordinates2[0] + a}"][posY = "${coordinates2[1]}"]`),
+            document.querySelector(`[posX = "${+coordinates3[0] + a}"][posY = "${coordinates3[1]}"]`),
+            document.querySelector(`[posX = "${+coordinates4[0] + a}"][posY = "${coordinates4[1]}"]`),
         ];
           for ( let i = 0; i<figureNew.length; i++) {
               if (!figureNew[i] || figureNew[i].classList.contains('set')) {
@@ -178,7 +178,11 @@ function move() {
             }
           }
       }
-      if (e.keyCode == 40) {
+      if (e.keyCode == 37) {
+          getNewState(-1);
+      } else if (e.keyCode == 39) {
+          getNewState(1);
+      } else if (e.keyCode == 40) {
           move();
       }
 
