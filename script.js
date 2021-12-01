@@ -143,4 +143,44 @@ function move() {
         move();
     }, 600);
     
-  
+    let flag=true;
+
+  window.addEventListener('keydown', function (e){
+      let coordinates1 = [figureBody[0].getAttribute('posX'), figureBody[0].getAttribute('posY')];
+      let coordinates2 = [figureBody[1].getAttribute('posX'), figureBody[1].getAttribute('posY')];
+      let coordinates3 = [figureBody[2].getAttribute('posX'), figureBody[2].getAttribute('posY')];
+      let coordinates4 = [figureBody[3].getAttribute('posX'), figureBody[3].getAttribute('posY')];
+
+      function getNewState(a) {
+
+        flag = true;
+
+        let figureNew = [
+            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
+            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
+            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
+            document.querySelector(`[posX = "${coordinates1[0] + a}"][posY = "${coordinates1[1]}"]`),
+        ];
+          for ( let i = 0; i<figureNew.length; i++) {
+              if (!figureNew[i] || figureNew[i].classList.contains('set')) {
+                  flag = false;
+              }
+          }
+
+          if (flag == true) {
+            for (let i = 0; i<figureBody.length; i++) {
+                figureBody[i].classList.remove('figure');
+            }
+            figureBody = figureNew;
+
+            for(let i=0; i<figureBody.length; i++) {
+                figureBody[i].classList.add('figure');
+            }
+          }
+      }
+      if (e.keyCode == 40) {
+          move();
+      }
+
+
+  })
