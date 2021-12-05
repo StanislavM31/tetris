@@ -36,18 +36,103 @@ let mainArr = [
         [0, 1],
         [0, 2],
         [0, 3],
+        //rotate 90
+        [
+            [-1, 1],
+            [0, 0],
+            [1, -1],
+            [2, -2],
+        ],
+        //rotate 180
+        [
+            [-1, 1],
+            [0, 0],
+            [-1, 1],
+            [-2, 2],
+        ],
+
+        //rotate 270
+        [
+            [-1, 1],
+            [0, 0],
+            [1, -1],
+            [2, -2],
+        ],
+        //rotate 360
+        [
+            [-1, 1],
+            [0, 0],
+            [-1, 1],
+            [-2, 2],
+        ],
     ],
     //квадрат
     [
         [1, 0],
         [0, 1],
         [1, 1],
-    ],
+        //rotate 90
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
+        //rotate 180
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
+        //rotate 270
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
+        //rotate 360
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0],
+        ],
+    ]
     // L
     [
         [1, 0],
         [0, 1],
-        [0, 2],
+        [0, 2],        
+        //rotate 90
+        [
+            [0, 0],
+            [-1, 1],
+            [1, 0],
+            [2, -1]
+        ],
+        //rotate 180
+        [
+            [1, -1],
+            [1, -1],
+            [-1, 0],
+            [-1, 0]
+        ],
+        //rotate 270
+        [
+            [-1, 0],
+            [0, -1],
+            [2, -2],
+            [1, -1]
+        ],
+        //rotate 360
+        [
+            [0, -1],
+            [0, -1],
+            [-2, 0],
+            [-2, 0],
+        ]  
     ],
     //зеркальная L
     [
@@ -77,12 +162,15 @@ let mainArr = [
 
 let currentFigure = 0;
 let figureBody = 0;
+let rotate = 1;
 
 function create() {
     function getRandom() {
         /* return Math.round(Math.random());  */
         return Math.round(Math.random()*(mainArr.length-1));
     }
+
+    rotate = 1;
     currentFigure = getRandom();//номер фигуры в массиве
 
     figureBody = [
@@ -184,6 +272,43 @@ function move() {
           getNewState(1);
       } else if (e.keyCode == 40) {
           move();
+      }
+      else if (e.keyCode == 38) {
+        flag = true;
+
+        let figureNew = [
+            document.querySelector(`[posX = "${+coordinates1[0] + mainArr[currentFigure][rotate+2][0][0]}"][posY = "
+            ${coordinates1[1] + mainArr[currentFigure][rotate+2][0][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates2[0] + mainArr[currentFigure][rotate+2][1][0]}"][posY = "
+            ${coordinates1[1] + mainArr[currentFigure][rotate+2][1][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates3[0] + mainArr[currentFigure][rotate+2][2][0]}"][posY = "
+            ${coordinates1[1] + mainArr[currentFigure][rotate+2][2][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates4[0] + mainArr[currentFigure][rotate+2][3][0]}"][posY = "
+            ${coordinates1[1] + mainArr[currentFigure][rotate+2][3][1]}"]`),
+        ];
+        for ( let i = 0; i<figureNew.length; i++) {
+            if (!figureNew[i] || figureNew[i].classList.contains('set')) {
+                flag = false;
+            }
+        }
+
+        if (flag == true) {
+            for (let i = 0; i<figureBody.length; i++) {
+                figureBody[i].classList.remove('figure');
+            }
+            figureBody = figureNew;
+
+            for(let i=0; i<figureBody.length; i++) {
+                figureBody[i].classList.add('figure');
+            }
+
+            if (rotate < 4) {
+                rotate++;
+            }
+            else {
+                rotate = 1;
+            }
+          }
       }
 
 
