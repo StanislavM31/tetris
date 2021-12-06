@@ -41,14 +41,14 @@ let mainArr = [
             [-1, 1],
             [0, 0],
             [1, -1],
-            [2, -2],
+            [2, -2]
         ],
         //rotate 180
         [
-            [-1, 1],
+            [1, -1],
             [0, 0],
             [-1, 1],
-            [-2, 2],
+            [-2, 2]
         ],
 
         //rotate 270
@@ -56,14 +56,14 @@ let mainArr = [
             [-1, 1],
             [0, 0],
             [1, -1],
-            [2, -2],
+            [2, -2]
         ],
         //rotate 360
         [
             [-1, 1],
             [0, 0],
             [-1, 1],
-            [-2, 2],
+            [-2, 2]
         ],
     ],
     //квадрат~
@@ -97,9 +97,9 @@ let mainArr = [
             [0, 0],
             [0, 0],
             [0, 0],
-            [0, 0],
+            [0, 0]
         ],
-    ]
+    ],
     // L
     [
         [1, 0],
@@ -132,7 +132,7 @@ let mainArr = [
             [0, -1],
             [-2, 0],
             [-2, 0],
-        ]  
+        ]
     ],
     //зеркальная L
     [
@@ -164,6 +164,7 @@ let currentFigure = 0;
 let figureBody = 0;
 let rotate = 1;
 
+
 function create() {
     function getRandom() {
         /* return Math.round(Math.random());  */
@@ -174,8 +175,7 @@ function create() {
     currentFigure = getRandom();//номер фигуры в массиве
 
     figureBody = [
-        document.querySelector(`[posX = "${x}"][posY = "${y}"]`), /*шаблоны строк (интерполяция).
-       querySelector возвращает первый элемент (Element) документа, который соответствует указанному селектору или группе селекторов. */
+        document.querySelector(`[posX = "${x}"][posY = "${y}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][0][0]}"][posY = "${y + mainArr[currentFigure][0][1]}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][1][0]}"][posY = "${y + mainArr[currentFigure][1][1]}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][2][0]}"][posY = "${y + mainArr[currentFigure][2][1]}"]`),
@@ -184,7 +184,7 @@ function create() {
         figureBody[i].classList.add('figure');
     }
 }
-let coordinates;
+
     create();
  
 function move() {
@@ -197,7 +197,7 @@ function move() {
         [figureBody[3].getAttribute('posX'), figureBody[3].getAttribute('posY')],
     ];
     for (let i=0; i<coordinates.length; i++) {
-        if (coordinates[i][1] == 1 || document.querySelector(`[posX = "${coordinates[i][0]}"][posY = "${coordinates[i][1] - 1}" ]`).classList.contains('set')) {
+        if (coordinates[i][1] == 1 || document.querySelector(`[posX = "${coordinates[i][0]}"][posY = "${coordinates[i][1] - 1}"]`).classList.contains('set')) {
                 moveFlag = false;
                 break;
             }
@@ -229,7 +229,7 @@ function move() {
 
     let interval = setInterval(() => {
         move();
-    }, 600);
+    }, 1000);
     
     let flag=true;
 
@@ -272,19 +272,14 @@ function move() {
           getNewState(1);
       } else if (e.keyCode == 40) {
           move();
-      }
-      else if (e.keyCode == 38) {
+      } else if (e.keyCode == 38) {
         flag = true;
 
         let figureNew = [
-            document.querySelector(`[posX = "${+coordinates1[0] + mainArr[currentFigure][rotate+2][0][0]}"][posY = "
-            ${coordinates1[1] + mainArr[currentFigure][rotate+2][0][1]}"]`),
-            document.querySelector(`[posX = "${+coordinates2[0] + mainArr[currentFigure][rotate+2][1][0]}"][posY = "
-            ${coordinates1[1] + mainArr[currentFigure][rotate+2][1][1]}"]`),
-            document.querySelector(`[posX = "${+coordinates3[0] + mainArr[currentFigure][rotate+2][2][0]}"][posY = "
-            ${coordinates1[1] + mainArr[currentFigure][rotate+2][2][1]}"]`),
-            document.querySelector(`[posX = "${+coordinates4[0] + mainArr[currentFigure][rotate+2][3][0]}"][posY = "
-            ${coordinates1[1] + mainArr[currentFigure][rotate+2][3][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates1[0] + mainArr[currentFigure][rotate + 2][0][0]}"][posY = "${+coordinates1[1] + mainArr[currentFigure][rotate+2][0][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates2[0] + mainArr[currentFigure][rotate + 2][1][0]}"][posY = "${+coordinates2[1] + mainArr[currentFigure][rotate+2][1][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates3[0] + mainArr[currentFigure][rotate + 2][2][0]}"][posY = "${+coordinates3[1] + mainArr[currentFigure][rotate+2][2][1]}"]`),
+            document.querySelector(`[posX = "${+coordinates4[0] + mainArr[currentFigure][rotate + 2][3][0]}"][posY = "${+coordinates4[1] + mainArr[currentFigure][rotate+2][3][1]}"]`),
         ];
         for ( let i = 0; i<figureNew.length; i++) {
             if (!figureNew[i] || figureNew[i].classList.contains('set')) {
