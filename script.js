@@ -50,21 +50,21 @@ let mainArr = [
             [-1, 1],
             [-2, 2]
         ],
-
-        //rotate 270
+        //rotate 90
         [
             [-1, 1],
             [0, 0],
             [1, -1],
             [2, -2]
         ],
-        //rotate 360
+        //rotate 180
         [
-            [-1, 1],
+            [1, -1],
             [0, 0],
             [-1, 1],
             [-2, 2]
         ],
+        
     ],
     //квадрат~
     [
@@ -131,14 +131,42 @@ let mainArr = [
             [0, -1],
             [0, -1],
             [-2, 0],
-            [-2, 0],
-        ]
+            [-2, 0]
+        ],
     ],
     //зеркальная L
     [
         [1, 0],
         [1, 1],
-        [1, 2]
+        [1, 2],
+        //rotate 90
+        [
+            [0, 0],
+            [0, 0],
+            [1, -1],
+            [-1, -1]
+        ],
+        //rotate 180
+        [
+            [0, -1],
+            [-1, 0],
+            [-2, 1],
+            [1, 0]
+        ],
+        //rotate 270
+        [
+            [2, 0],
+            [0, 0],
+            [1, -1],
+            [1, -1]
+        ],
+        //rotate 360
+        [
+            [-2, 0],
+            [1, -1],
+            [0, 0],
+            [-1, 1]
+        ],
     ],
     //молния вправо
     [
@@ -176,6 +204,8 @@ function create() {
 
     figureBody = [
         document.querySelector(`[posX = "${x}"][posY = "${y}"]`),
+        -        document.querySelector(`[posX = "${x}"][posY = "${y}"]`), /*шаблоны строк (интерполяция).
+        -       querySelector возвращает первый элемент (Element) документа, который соответствует указанному селектору или группе селекторов. */
         document.querySelector(`[posX = "${x + mainArr[currentFigure][0][0]}"][posY = "${y + mainArr[currentFigure][0][1]}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][1][0]}"][posY = "${y + mainArr[currentFigure][1][1]}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][2][0]}"][posY = "${y + mainArr[currentFigure][2][1]}"]`),
