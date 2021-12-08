@@ -1,3 +1,2 @@
-# tetris
-it will be
+# tetris. It will be...
 https://stanislavm31.github.io/tetris/
