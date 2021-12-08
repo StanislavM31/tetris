@@ -172,7 +172,35 @@ let mainArr = [
     [
         [1, 0],
         [-1, 1],
-        [0, 1]
+        [0, 1],
+         //rotate 90
+         [
+            [0, -1],
+            [-1, 0],
+            [2, -1],
+            [1, 0]
+        ],
+        //rotate 180
+        [
+            [0, 0],
+            [1, -1],
+            [-2, 0],
+            [-1, -1],
+        ],
+        //rotate 270
+        [
+            [0, -1],
+            [-1, 0],
+            [2, -1],
+            [1, 0],
+        ],
+        //rotate 360
+        [
+            [0, 0],
+            [1, -1],
+            [-2, 0],
+            [-1, -1]
+        ],
     ],
     //молния влево
     [
@@ -203,9 +231,8 @@ function create() {
     currentFigure = getRandom();//номер фигуры в массиве
 
     figureBody = [
-        document.querySelector(`[posX = "${x}"][posY = "${y}"]`),
-        -        document.querySelector(`[posX = "${x}"][posY = "${y}"]`), /*шаблоны строк (интерполяция).
-        -       querySelector возвращает первый элемент (Element) документа, который соответствует указанному селектору или группе селекторов. */
+        document.querySelector(`[posX = "${x}"][posY = "${y}"]`), /*шаблоны строк (интерполяция).
+        querySelector возвращает первый элемент (Element) документа, который соответствует указанному селектору или группе селекторов. */
         document.querySelector(`[posX = "${x + mainArr[currentFigure][0][0]}"][posY = "${y + mainArr[currentFigure][0][1]}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][1][0]}"][posY = "${y + mainArr[currentFigure][1][1]}"]`),
         document.querySelector(`[posX = "${x + mainArr[currentFigure][2][0]}"][posY = "${y + mainArr[currentFigure][2][1]}"]`),
