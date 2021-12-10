@@ -361,6 +361,13 @@ function move() {
                     }
                 }
             }
+            for (let n=1; n<11; n++) { //если хоть одна ячейка из 15го ряда имеет класс set - game over
+                if(document.querySelector(`[posX = "${n}"][posY = "15"]`).classList.contains('set')) {
+                    clearInterval(interval);
+                    alert('Game over');
+                    break;
+                }
+            }
             create();
         }
     
