@@ -335,6 +335,19 @@ function move() {
                 figureBody[i].classList.remove('figure');
                 figureBody[i].classList.add('set');
             }
+            for (let i = 1; i<15; i++){
+                let count = 0;
+                for(let k = 1; k < 11; k++) {
+                    if(document.querySelector(`[posX = "${k}"][posY = "${i}"]`).classList.contains('set')) {
+                        count++;
+                        if (count == 10) {
+                            for (let j = 1; j < 11; j++) {
+                                document.querySelector(`[posX = "${j}"][posY = "${i}"]`).classList.remove('set')
+                            }
+                        }
+                    }
+                }
+            }
             create();
         }
     
