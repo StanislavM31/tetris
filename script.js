@@ -299,6 +299,10 @@ function create() {
 }
 
     create();
+
+    let score = 0;
+    let input = document.getElementsByTagName('input')[0];
+    input.value = `Ваши очки: ${score}`;
  
 function move() {
     let moveFlag = true;
@@ -341,6 +345,8 @@ function move() {
                     if(document.querySelector(`[posX = "${k}"][posY = "${i}"]`).classList.contains('set')) {
                         count++;
                         if (count == 10) {
+                            score += 10;
+                            input.value = `Ваши очки:${score}`;
                             for (let j = 1; j < 11; j++) {
                                 document.querySelector(`[posX = "${j}"][posY = "${i}"]`).classList.remove('set')
                             }
@@ -364,7 +370,7 @@ function move() {
             for (let n=1; n<11; n++) { //если хоть одна ячейка из 15го ряда имеет класс set - game over
                 if(document.querySelector(`[posX = "${n}"][posY = "15"]`).classList.contains('set')) {
                     clearInterval(interval);
-                    alert('Game over');
+                    alert(`Game over. Your score:${score}`);
                     break;
                 }
             }
